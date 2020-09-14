@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from .form import CreateUserForm
+from .models import Product
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url='login')
 def home_view(request):
-    context = {}
+    product = Product.objects.all()
+    context = {'product': product}
     return render(request, 'meaningless/index.html', context)
 
 
@@ -51,3 +53,4 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
