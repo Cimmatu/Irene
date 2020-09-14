@@ -48,7 +48,6 @@ def register_view(request):
     return render(request, 'meaningless/register.html', context)
 
 
-
 def logout_view(request):
     logout(request)
     return redirect('login')
